@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mappy · Geo Intelligence Core</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="stage"></div>
+
+  <div id="loader">
+    <div class="loader-ring"></div>
+    <p id="loader-text">LOADING WORLD DATA</p>
+  </div>
+
+  <header id="title">
+    <h1>MAPPY</h1>
+    <p class="sub">GEO INTELLIGENCE CORE</p>
+    <p class="link" id="link-status"><span class="dot"></span><span id="link-text">INITIALIZING</span></p>
+    <div id="search">
+      <input id="search-input" list="country-list" placeholder="Search a country and press Enter" autocomplete="off" spellcheck="false" />
+      <datalist id="country-list"></datalist>
+    </div>
+  </header>
+
+  <aside id="panel-hand" class="panel">
+    <div class="panel-head"><span>Hand tracking</span><i id="hand-badge">OFF</i></div>
+    <div class="hand-block">
+      <h3>Left hand</h3>
+      <div class="row"><span class="k">Tracking</span><span class="v" id="lh-state">STANDBY</span></div>
+      <div class="row"><span class="k">Confidence</span><span class="v" id="lh-conf">--</span></div>
+    </div>
+    <div class="hand-block">
+      <h3>Right hand</h3>
+      <div class="row"><span class="k">Tracking</span><span class="v" id="rh-state">STANDBY</span></div>
+      <div class="row"><span class="k">Confidence</span><span class="v" id="rh-conf">--</span></div>
+    </div>
+    <div class="row"><span class="k">Gesture</span><span class="v" id="g-name">STANDBY</span></div>
+    <div class="row"><span class="k">Hands</span><span class="v" id="g-count">0</span></div>
+    <ul class="guide">
+      <li><b>Open palm</b> move to rotate</li>
+      <li><b>Point + pinch</b> select country</li>
+      <li><b>Two hands</b> apart / together to zoom</li>
+      <li><b>Fist</b> reset view</li>
+    </ul>
+  </aside>
+
+  <aside id="panel-sys" class="panel">
+    <div class="panel-head"><span>Core system</span><i id="sys-mode">MOUSE</i></div>
+    <div class="row"><span class="k">FPS</span><span class="v" id="s-fps">--</span></div>
+    <div class="bar"><i id="s-fps-bar"></i></div>
+    <div class="row"><span class="k">Frame time</span><span class="v" id="s-frame">--</span></div>
+    <div class="row"><span class="k">Hand latency</span><span class="v" id="s-lat">--</span></div>
+    <div class="row"><span class="k">Land points</span><span class="v" id="s-dots">--</span></div>
+    <div class="row"><span class="k">Bloom</span><span class="v" id="s-bloom">ON</span></div>
+  </aside>
+
+  <aside id="panel-country" class="panel">
+    <div class="panel-head"><span>Region intel</span><i id="c-badge">IDLE</i></div>
+    <div id="country-body"></div>
+  </aside>
+
+  <nav id="controls" aria-label="Layer controls">
+    <button data-layer="camera" class="on">Camera</button>
+    <button data-layer="rotate" class="on">Rotate</button>
+    <button data-layer="borders" class="on">Borders</button>
+    <button data-layer="rings" class="on">Rings</button>
+    <button data-layer="dust" class="on">Dust</button>
+    <button data-layer="bloom" class="on">Bloom</button>
+  </nav>
+
+  <div id="cam-box">
+    <video id="cam" autoplay playsinline muted></video>
+    <canvas id="cam-overlay" width="320" height="240"></canvas>
+  </div>
+
+  <div id="coords">LAT -- · LON --</div>
+  <div id="cursor"></div>
+  <div id="hover-label"></div>
+  <div id="toast"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
